@@ -4,7 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
@@ -33,7 +32,6 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 const port = process.env.PORT || 3000;
-
 mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.umzlh.mongodb.net/shop?retryWrites=true&w=majority`
@@ -43,8 +41,8 @@ mongoose
     User.findOne().then(user => {
       if (!user) {
         const user = new User({
-          name: 'Max',
-          email: 'max@test.com',
+          name: 'Anna',
+          email: 'Anna@test.com',
           cart: {
             items: []
           }
