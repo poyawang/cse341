@@ -37,7 +37,7 @@ const port = process.env.PORT || 3000;
 mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.umzlh.mongodb.net/shop?retryWrites=true&w=majority`
-
+      ,{useNewUrlParser: true, useUnifiedTopology:true}
   )
   .then(result => {
     User.findOne().then(user => {
@@ -52,7 +52,7 @@ mongoose
         user.save();
       }
     });
-    app.listen(3000);
+    app.listen(port);
   })
   .catch(err => {
     console.log(err);
