@@ -14,6 +14,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -29,13 +30,14 @@ app.use((req, res, next) => {
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+app.use(authRoutes);
 
 app.use(errorController.get404);
 const port = process.env.PORT || 3000;
 mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.umzlh.mongodb.net/shop?retryWrites=true&w=majority`
-      ,{useNewUrlParser: true, useUnifiedTopology:true}
+    ,{useNewUrlParser: true, useUnifiedTopology:true}
   )
   .then(result => {
     User.findOne().then(user => {
