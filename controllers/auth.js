@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const { validationResult } = require('express-validator/check');
 
+
 const User = require('../models/user');
 
 const transporter = nodemailer.createTransport(
